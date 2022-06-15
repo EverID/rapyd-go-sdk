@@ -14,10 +14,34 @@ type Customer struct {
 }
 
 type CustomerPaymentMethod struct {
-	Address []Address `json:"address"`
-	Fields map[string]interface{} `json:"fields"`
+	ID       string                 `json:"id"`
+	Type     string                 `json:"type,omitempty"`
+	Address  []Address              `json:"address"`
+	Category string                 `json:"category"`
+	Fields   map[string]interface{} `json:"fields"`
+}
+
+type RetrieveCustomerMethod struct {
+	Data CustomerPaymentMethod `json:"data"`
+}
+
+type RetrieveCustomerMethods struct {
+	Data []CustomerPaymentMethod `json:"data"`
+}
+
+type RetrieveCustomer struct {
+	DefaultPaymentMethod string                  `json:"default_payment_method"`
+	PaymentMethods       RetrieveCustomerMethods `json:"payment_methods"`
+}
+
+type RetrieveCustomerResponse struct {
+	Data RetrieveCustomer `json:"data"`
 }
 
 type CustomerResponse struct {
 	Data Data `json:"data"`
+}
+
+type CustomerPaymentMethodListResponse struct {
+	Data []CustomerPaymentMethod `json:"data"`
 }

@@ -16,14 +16,14 @@ type EWallet struct {
 }
 
 type CreatePayment struct {
-	Amount            string         `json:"amount"`
-	Currency          string         `json:"currency"`
-	Customer          *string        `json:"customer,omitempty"`
-	Expiration        *int64         `json:"expiration,omitempty"`
-	FixedSide         *string        `json:"fixed_side,omitempty"`
-	RequestedCurrency *string        `json:"requested_currency,omitempty"`
-	EWallets          []EWallet      `json:"ewallets"`
-	PaymentMethod     *PaymentMethod `json:"payment_method,omitempty"`
+	Amount            string    `json:"amount"`
+	Currency          string    `json:"currency"`
+	Customer          *string   `json:"customer,omitempty"`
+	Expiration        *int64    `json:"expiration,omitempty"`
+	FixedSide         *string   `json:"fixed_side,omitempty"`
+	RequestedCurrency *string   `json:"requested_currency,omitempty"`
+	EWallets          []EWallet `json:"ewallets"`
+	PaymentMethod     string    `json:"payment_method,omitempty"`
 }
 
 type CreatePaymentResponse struct {
