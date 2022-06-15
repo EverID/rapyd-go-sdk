@@ -1,6 +1,6 @@
 package philippines
 
-import "github.com/olegfomenko/rapyd-go-sdk/resources"
+import "github.com/EverID/rapyd-go-sdk/resources"
 
 const BancnetPaymentType = "ph_bancnet_bank"
 

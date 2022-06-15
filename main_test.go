@@ -2,7 +2,7 @@ package rapyd
 
 import (
 	"fmt"
-	"github.com/olegfomenko/rapyd-go-sdk/resources"
+	"github.com/EverID/rapyd-go-sdk/resources"
 	"github.com/stretchr/testify/assert"
 	"math/rand"
 	"net/http"

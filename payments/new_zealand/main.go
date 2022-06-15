@@ -1,6 +1,6 @@
 package new_zealand
 
-import "github.com/olegfomenko/rapyd-go-sdk/resources"
+import "github.com/EverID/rapyd-go-sdk/resources"
 
 const PoliPaymentType = "nz_poli_bank"
 

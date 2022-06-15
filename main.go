@@ -6,7 +6,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/olegfomenko/rapyd-go-sdk/resources"
+	"github.com/EverID/rapyd-go-sdk/resources"
 	"github.com/pkg/errors"
 	"io/ioutil"
 	"net/http"
