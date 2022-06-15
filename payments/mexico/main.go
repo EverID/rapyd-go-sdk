@@ -1,7 +1,7 @@
 package mexico
 
 import (
-	"github.com/olegfomenko/rapyd-go-sdk/resources"
+	"github.com/EverID/rapyd-go-sdk/resources"
 )
 
 const (

@@ -1,6 +1,6 @@
 package japan
 
-import "github.com/olegfomenko/rapyd-go-sdk/resources"
+import "github.com/EverID/rapyd-go-sdk/resources"
 
 const JPBankTransferPaymentType = "jp_banktransfer_bank"
 

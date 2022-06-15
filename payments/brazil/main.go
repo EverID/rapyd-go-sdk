@@ -1,6 +1,6 @@
 package brazil
 
-import "github.com/olegfomenko/rapyd-go-sdk/resources"
+import "github.com/EverID/rapyd-go-sdk/resources"
 
 const (
 	BradescoPaymentType    = "br_bradesco_bank"

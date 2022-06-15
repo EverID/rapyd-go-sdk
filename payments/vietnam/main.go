@@ -1,6 +1,6 @@
 package vietnam
 
-import "github.com/olegfomenko/rapyd-go-sdk/resources"
+import "github.com/EverID/rapyd-go-sdk/resources"
 
 const (
 	VIBPaymentType          = "vn_vib_bank"

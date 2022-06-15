@@ -30,7 +30,7 @@ client := NewClient(signer, url, http.DefaultClient)
 
 ### Creating Payment
 ```go
-import "github.com/olegfomenko/rapyd-go-sdk/payments/usa"
+import "github.com/EverID/rapyd-go-sdk/payments/usa"
 ```
 
 ```go

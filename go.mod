@@ -1,4 +1,4 @@
-module github.com/olegfomenko/rapyd-go-sdk
+module github.com/EverID/rapyd-go-sdk
 
 go 1.15
 

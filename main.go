@@ -6,7 +6,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/olegfomenko/rapyd-go-sdk/resources"
+	"github.com/EverID/rapyd-go-sdk/resources"
 	"github.com/pkg/errors"
 	"io/ioutil"
 	"net/http"
@@ -14,18 +14,18 @@ import (
 )
 
 const (
-	createWalletPath      = "/v1/user"
-	createCustomerPath    = "/v1/customers"
-	updateCustomerPath    = "/v1/customers/"
-	retrieveCustomerPath  = "/v1/customers/"
-	createPaymentPath     = "/v1/payments"
-	createSenderPath      = "/v1/payouts/sender"
-	createPayoutPath      = "/v1/payouts"
-	createBeneficiaryPath = "/v1/payouts/beneficiary"
-	getPaymentFieldsPath  = "/v1/payment_methods/required_fields/"
-	getPaymentMethodsPath = "/v1/payment_methods/country?country="
-	getPayoutMethodsPath  = "v1/payouts/supported_types?"
-	getPayoutFieldsPath   = "/v1/payouts/"
+	createWalletPath            = "/v1/user"
+	createCustomerPath          = "/v1/customers"
+	updateCustomerPath          = "/v1/customers/"
+	retrieveCustomerPath        = "/v1/customers/"
+	createPaymentPath           = "/v1/payments"
+	createSenderPath            = "/v1/payouts/sender"
+	createPayoutPath            = "/v1/payouts"
+	createBeneficiaryPath       = "/v1/payouts/beneficiary"
+	getPaymentFieldsPath        = "/v1/payment_methods/required_fields/"
+	getPaymentMethodsPath       = "/v1/payment_methods/country?country="
+	getPayoutMethodsPath        = "v1/payouts/supported_types?"
+	getPayoutFieldsPath         = "/v1/payouts/"
 	updateCustomerPaymentMethod = "/v1/customers/%s/payment_methods/"
 )
 
@@ -193,7 +193,7 @@ func (c *client) UpdateCustomer(customerID string, data resources.Customer) (*re
 }
 
 func (c *client) UpdateCustomerPaymentMethod(customerID, paymentMethodID string, data resources.CustomerPaymentMethod) (*resources.CustomerResponse, error) {
-	response, err := c.PostSigned(data, fmt.Sprintf(updateCustomerPaymentMethod, customerID) + paymentMethodID)
+	response, err := c.PostSigned(data, fmt.Sprintf(updateCustomerPaymentMethod, customerID)+paymentMethodID)
 	if err != nil {
 		return nil, errors.Wrap(err, "error sending update customer payment method request")
 	}
