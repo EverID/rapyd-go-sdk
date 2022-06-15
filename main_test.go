@@ -59,59 +59,6 @@ func TestClient_CreateWallet(t *testing.T) {
 	assert.NoError(t, err)
 }
 
-func TestClient_CreateCustomer(t *testing.T) {
-	addr, err := url.Parse(endpoint)
-	assert.NoError(t, err)
-
-	rand.Seed(time.Now().Unix())
-	var randNumber = strconv.Itoa(rand.Int())
-
-	rapyd := NewClient(NewRapydSigner([]byte(accessKey), []byte(secretKey)), addr, http.DefaultClient)
-	_, err = rapyd.CreateCustomer(resources.Customer{
-		Name:  "Oleg Fomenko",
-		Email: randNumber + "oleg@mail.com",
-		PaymentMethod: resources.PaymentMethod{
-			Fields: map[string]interface{}{
-				"proof_of_authorization": false,
-				"routing_number":         "111111111",
-				"payment_purpose":        "111111",
-				"account_number":         "111111",
-			},
-			Type: "us_ach_bank",
-		},
-	})
-
-	assert.NoError(t, err)
-}
-
-func TestClient_CreatePayment(t *testing.T) {
-	addr, err := url.Parse(endpoint)
-	assert.NoError(t, err)
-
-	rapyd := NewClient(NewRapydSigner([]byte(accessKey), []byte(secretKey)), addr, http.DefaultClient)
-	_, err = rapyd.CreatePayment(resources.CreatePayment{
-		Amount:   "100.23",
-		Currency: "USD",
-		PaymentMethod: &resources.PaymentMethod{
-			Fields: map[string]interface{}{
-				"proof_of_authorization": false,
-				"routing_number":         "111111111",
-				"payment_purpose":        "111111",
-				"account_number":         "111111",
-			},
-			Type: "us_ach_bank",
-		},
-		EWallets: []resources.EWallet{
-			{
-				Wallet:     "ewallet_8d3fdd0929856f5a30ec2933f4bd6cf1",
-				Percentage: 100,
-			},
-		},
-	})
-
-	assert.NoError(t, err)
-}
-
 func TestClient_GetPaymentMethodFields(t *testing.T) {
 	addr, err := url.Parse(endpoint)
 	assert.NoError(t, err)
