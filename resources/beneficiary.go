@@ -1,29 +1,61 @@
 package resources
 
-type Beneficiary struct {
-	Category                string  `json:"category"`
-	CompanyName             *string `json:"company_name,omitempty"`
-	Country                 string  `json:"country"`
-	Currency                string  `json:"currency"`
-	DefaultPayoutMethodType *string `json:"default_payout_method_type,omitempty"`
-	EntityType              string  `json:"entity_type"`
-	FirstName               string  `json:"first_name"`
-	IdentificationType      string  `json:"identification_type"`
-	IdentificationValue     string  `json:"identification_value"`
-	LastName                string  `json:"last_name"`
-	AccountNumber           string  `json:"account_number"`
-	PaymentType             string  `json:"payment_type"`
-	Address                 string  `json:"address"`
-	City                    string  `json:"city"`
-	State                   string  `json:"state"`
-	PostCode                string  `json:"postcode"`
-	CardNumber              string  `json:"card_number"`
-	CardExpirationMonth     string  `json:"card_expiration_month"`
-	CardExpirationYear      string  `json:"card_expiration_year"`
-	AchCode                 string  `json:"aba"`
-	BankName                string  `json:"bank_name"`
-	BicSwift                string  `json:"bic_swift"`
-	Iban                    string  `json:"iban"`
+import (
+	"errors"
+	"fmt"
+)
+
+const (
+	categoryKey   string = "category"
+	countryKey           = "country"
+	currencyKey          = "currency"
+	entityTypeKey        = "entity_type"
+)
+
+type Beneficiary map[string]string
+
+type BeneficiaryBuilder struct {
+	beneficiary Beneficiary
+}
+
+func NewBeneficiaryBuilder() *BeneficiaryBuilder {
+	return &BeneficiaryBuilder{beneficiary: make(map[string]string)}
+}
+
+func (b *BeneficiaryBuilder) Category(category string) *BeneficiaryBuilder {
+	b.beneficiary[categoryKey] = category
+	return b
+}
+
+func (b *BeneficiaryBuilder) Country(country string) *BeneficiaryBuilder {
+	b.beneficiary[countryKey] = country
+	return b
+}
+
+func (b *BeneficiaryBuilder) Currency(currency string) *BeneficiaryBuilder {
+	b.beneficiary[currencyKey] = currency
+	return b
+}
+
+func (b *BeneficiaryBuilder) EntityType(entityType string) *BeneficiaryBuilder {
+	b.beneficiary[entityTypeKey] = entityType
+	return b
+}
+
+func (b *BeneficiaryBuilder) Build() (*Beneficiary, error) {
+	keys := []string{categoryKey, countryKey, currencyKey, entityTypeKey}
+
+	for _, key := range keys {
+		if _, ok := b.beneficiary[key]; !ok {
+			return nil, errors.New(fmt.Sprintf("Required field %s is missed", key))
+		}
+	}
+
+	return &b.beneficiary, nil
+}
+
+func (b Beneficiary) AddRequiredFields(key, value string) {
+	b[key] = value
 }
 
 type BeneficiaryResponse struct {
