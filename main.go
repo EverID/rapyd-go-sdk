@@ -6,11 +6,12 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/EverID/rapyd-go-sdk/resources"
-	"github.com/pkg/errors"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+
+	"github.com/EverID/rapyd-go-sdk/resources"
+	"github.com/pkg/errors"
 )
 
 const (
@@ -433,9 +434,17 @@ func (c *client) GetPayoutRequiredFields(method, beneficiaryCountry, beneficiary
 
 	var body resources.PayoutRequiredFieldsResponse
 
+	responseCopy := response[:]
 	err = json.Unmarshal(response, &body)
 	if err != nil {
-		return nil, errors.Wrap(err, "error unmarshalling response")
+		var emptyResponseStructure struct {
+			data interface{}
+		}
+		if err = json.Unmarshal(responseCopy, &emptyResponseStructure); err != nil {
+			return nil, errors.Wrap(err, "error unmarshalling response")
+		}
+
+		return &body, nil
 	}
 
 	return &body, nil
