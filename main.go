@@ -438,7 +438,7 @@ func (c *client) GetPayoutRequiredFields(method, beneficiaryCountry, beneficiary
 	err = json.Unmarshal(response, &body)
 	if err != nil {
 		var emptyResponseStructure struct {
-			data interface{}
+			Data interface{} `json:"data"`
 		}
 		if err = json.Unmarshal(responseCopy, &emptyResponseStructure); err != nil {
 			return nil, errors.Wrap(err, "error unmarshalling response")
